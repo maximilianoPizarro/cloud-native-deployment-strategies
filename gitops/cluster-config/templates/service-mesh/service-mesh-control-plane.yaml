@@ -13,9 +13,10 @@ spec:
       pilot:
         deployment:
           replicas: 3
+  
   tracing:
-    sampling: 10000
-    type: Jaeger
+    type: OpenTelemetry
+  
   gateways:
     enabled: true
     egress:
@@ -35,10 +36,7 @@ spec:
   addons:
     grafana:
       enabled: true
-    jaeger:
-      install:
-        storage:
-          type: Memory
+    
     kiali:
       enabled: true
     prometheus:
@@ -46,6 +44,14 @@ spec:
   version: v2.4
   telemetry:
     type: Istiod
+
+  meshConfig:
+    defaultConfig:
+      tracing:
+        openTelemetry:
+          address: "opentelemetry-collector.openshift-distributed-tracing.svc.cluster.local:4317"
+        sampling: 100.0 
+
 ---
 kind: Service
 apiVersion: v1
@@ -60,5 +66,5 @@ spec:
       targetPort: 9090
   type: ClusterIP
   selector:
-    app: prometheus 
+    app: prometheus
 {{ end }}
