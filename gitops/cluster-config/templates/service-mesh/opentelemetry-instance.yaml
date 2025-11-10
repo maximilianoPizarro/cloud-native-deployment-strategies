@@ -8,8 +8,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "11"
 spec:
   mode: deployment
-  config: |  
-    # Todo el bloque siguiente ahora es tratado como un string
+  config: |
     receivers:
       otlp:
         protocols:
@@ -19,8 +18,8 @@ spec:
             endpoint: "0.0.0.0:4318"
 
     exporters:
-      jaeger:
-        endpoint: "jaeger-all-in-one-inmemory-collector.openshift-distributed-tracing.svc:14250"
+      otlp:
+        endpoint: "jaeger-all-in-one-inmemory-otlp-grpc.openshift-distributed-tracing.svc:4317"
         tls:
           insecure: true
 
@@ -32,8 +31,7 @@ spec:
         traces:
           receivers: [otlp]
           processors: []
-          exporters: [jaeger, logging]
-
+          exporters: [otlp, logging]
 
   jaeger:
     spec:
