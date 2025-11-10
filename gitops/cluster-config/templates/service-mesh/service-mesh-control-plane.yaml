@@ -15,7 +15,7 @@ spec:
           replicas: 3
   
   tracing:
-    type: OpenTelemetry
+    type: None 
   
   gateways:
     enabled: true
@@ -37,6 +37,11 @@ spec:
     grafana:
       enabled: true
     
+    # jaeger:
+    #   install:
+    #     storage:
+    #       type: Memory
+    
     kiali:
       enabled: true
     prometheus:
@@ -50,7 +55,7 @@ spec:
       tracing:
         openTelemetry:
           address: "opentelemetry-collector.openshift-distributed-tracing.svc.cluster.local:4317"
-        sampling: 100.0 
+        sampling: 100.0
 
 ---
 kind: Service
