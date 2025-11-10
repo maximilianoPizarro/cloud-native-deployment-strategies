@@ -16,7 +16,10 @@ spec:
   
   tracing:
     type: None 
-  
+
+  members:
+    - gitops
+
   gateways:
     enabled: true
     egress:
@@ -30,7 +33,7 @@ spec:
         deployment:
           replicas: 3
     openshiftRoute:
-      enabled: false
+      enabled: true
   policy:
     type: Istiod
   addons:
