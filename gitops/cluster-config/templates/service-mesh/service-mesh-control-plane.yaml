@@ -30,7 +30,7 @@ spec:
         deployment:
           replicas: 3
     openshiftRoute:
-      enabled: true
+      enabled: false
   policy:
     type: Istiod
   addons:
