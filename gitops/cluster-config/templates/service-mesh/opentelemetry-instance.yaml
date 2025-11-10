@@ -22,7 +22,6 @@ spec:
         endpoint: "jaeger-all-in-one-inmemory-otlp-grpc.openshift-distributed-tracing.svc:4317"
         tls:
           insecure: true
-
       debug: {}
 
     service:
@@ -31,20 +30,4 @@ spec:
           receivers: [otlp]
           processors: []
           exporters: [otlp, debug]
-
-  jaeger:
-    spec:
-      strategy: allInOne
-      allInOne:
-        image: "quay.io/jaegertracing/all-in-one:latest"
-        options:
-          query:
-            base-path: /
-      storage:
-        type: memory
-        options:
-          memory:
-            max-traces: 100000
-      ingress:
-        enabled: true
 {{ end }}

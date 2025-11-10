@@ -1,0 +1,19 @@
+{{- if .Values.istio.enabled }}
+apiVersion: jaegertracing.io/v1
+kind: Jaeger
+metadata:
+  name: jaeger-all-in-one-inmemory
+  namespace: openshift-distributed-tracing
+  annotations:
+    argocd.argoproj.io/sync-wave: "11"
+spec:
+  strategy: allInOne
+  storage:
+    type: memory
+  ingress:
+    enabled: true
+  allInOne:
+    options:
+      collector.otlp:
+        enabled: true
+{{ end }}
