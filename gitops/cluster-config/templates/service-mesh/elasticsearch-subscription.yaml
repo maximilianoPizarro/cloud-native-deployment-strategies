@@ -9,7 +9,7 @@ metadata:
 spec:
   channel: stable-5.8
   name: elasticsearch-operator
-  source: redhat-operators
+  source: community-operators
   sourceNamespace: openshift-marketplace
   installPlanApproval: Automatic
 {{ end }}

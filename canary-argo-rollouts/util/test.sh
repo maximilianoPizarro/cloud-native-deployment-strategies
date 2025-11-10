@@ -32,7 +32,7 @@ rm -rf /tmp/deployment
 mkdir /tmp/deployment
 cd /tmp/deployment
 
-git clone https://github.com/davidseve/cloud-native-deployment-strategies.git
+git clone https://github.com/maximilianoPizarro/cloud-native-deployment-strategies.git
 cd cloud-native-deployment-strategies
 #To work with a branch that is not main. ./test.sh no helm_base
 if [ ${2:-no} != "no" ]
@@ -61,7 +61,7 @@ then
     waitoperatorpod pipelines
 fi
 
-sed -i 's/maximilianoPizarro/davidseve/g' canary-argo-rollouts/application-shop-canary-rollouts.yaml
+sed -i 's/maximilianoPizarro/maximilianoPizarro/g' canary-argo-rollouts/application-shop-canary-rollouts.yaml
 
 oc apply -f canary-argo-rollouts/application-shop-canary-rollouts.yaml --wait=true
 sleep 2m

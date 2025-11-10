@@ -26,7 +26,7 @@ rm -rf /tmp/deployment
 mkdir /tmp/deployment
 cd /tmp/deployment
 
-git clone https://github.com/davidseve/cloud-native-deployment-strategies.git
+git clone https://github.com/maximilianoPizarro/cloud-native-deployment-strategies.git
 cd cloud-native-deployment-strategies
 
 if [ ${2:-no} != "no" ]
@@ -43,9 +43,9 @@ then
     waitoperatorpod gitops
     sleep 30s
     sed -i "s/changeme_token/$4/g" blue-green-pipeline/application-cluster-config.yaml
-    sed -i 's/changeme_user/davidseve/g' blue-green-pipeline/application-cluster-config.yaml
-    sed -i 's/changeme_mail/davidseve@gmail.com/g' blue-green-pipeline/application-cluster-config.yaml
-    sed -i 's/changeme_repository/davidseve/g' blue-green-pipeline/application-cluster-config.yaml
+    sed -i 's/changeme_user/maximilianoPizarro/g' blue-green-pipeline/application-cluster-config.yaml
+    sed -i 's/changeme_mail/maximilianoPizarro@gmail.com/g' blue-green-pipeline/application-cluster-config.yaml
+    sed -i 's/changeme_repository/maximilianoPizarro/g' blue-green-pipeline/application-cluster-config.yaml
 
     if [ ${2:-no} != "no" ]
     then
@@ -63,7 +63,7 @@ then
 
 fi
 
-sed -i 's/maximilianoPizarro/davidseve/g' blue-green-pipeline/application-shop-blue-green.yaml
+sed -i 's/maximilianoPizarro/maximilianoPizarro/g' blue-green-pipeline/application-shop-blue-green.yaml
 
 oc apply -f blue-green-pipeline/application-shop-blue-green.yaml --wait=true
 sleep 1m

@@ -26,7 +26,7 @@ rm -rf /tmp/deployment
 mkdir /tmp/deployment
 cd /tmp/deployment
 
-git clone https://github.com/davidseve/cloud-native-deployment-strategies.git
+git clone https://github.com/maximilianoPizarro/cloud-native-deployment-strategies.git
 cd cloud-native-deployment-strategies
 #To work with a branch that is not main. ./test.sh no helm_base
 if [ ${2:-no} != "no" ]
@@ -71,7 +71,7 @@ then
     fi
 fi
 
-sed -i 's/maximilianoPizarro/davidseve/g' blue-green-argo-rollouts/application-shop-blue-green-rollouts.yaml
+sed -i 's/maximilianoPizarro/maximilianoPizarro/g' blue-green-argo-rollouts/application-shop-blue-green-rollouts.yaml
 
 oc apply -f blue-green-argo-rollouts/application-shop-blue-green-rollouts.yaml --wait=true
 sleep 2m

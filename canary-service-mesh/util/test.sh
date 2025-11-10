@@ -32,7 +32,7 @@ rm -rf /tmp/deployment
 mkdir /tmp/deployment
 cd /tmp/deployment
 
-git clone https://github.com/davidseve/cloud-native-deployment-strategies.git
+git clone https://github.com/maximilianoPizarro/cloud-native-deployment-strategies.git
 cd cloud-native-deployment-strategies
 #To work with a branch that is not main. ./test.sh no helm_base
 if [ ${2:-no} != "no" ]
@@ -65,7 +65,7 @@ then
 fi
 
 
-sed -i 's/maximilianoPizarro/davidseve/g' canary-service-mesh/application-shop-mesh.yaml
+sed -i 's/maximilianoPizarro/maximilianoPizarro/g' canary-service-mesh/application-shop-mesh.yaml
 sed -i "s/change_domain/$4/g" canary-service-mesh/application-shop-mesh.yaml
 
 oc apply -f canary-service-mesh/application-shop-mesh.yaml --wait=true

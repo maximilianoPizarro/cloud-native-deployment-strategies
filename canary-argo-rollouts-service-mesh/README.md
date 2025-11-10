@@ -23,7 +23,7 @@ A canary deployment is a strategy where the operator releases a new version of t
  
 We are going to use very simple applications to test canary deployment. We have created two Quarkus applications `Products` and `Discounts`
  
-![Shop Application](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/Shop.png)
+![Shop Application](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/Shop.png)
  
 `Products` call `Discounts` to get the product`s discount and expose an API with a list of products with its discounts.
  
@@ -31,7 +31,7 @@ We are going to use very simple applications to test canary deployment. We have 
  
 To achieve canary deployment with `Cloud Native` applications using **Argo Rollouts** and **Openshift Service Mesh**, we have designed this architecture. This is a simplification.
 
-![Shop initial status](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/canary-rollout-mesh-initial.png)
+![Shop initial status](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/canary-rollout-mesh-initial.png)
  
 OpenShift Components - Online
 
@@ -49,7 +49,7 @@ We have defined an active or online service 'products-umbrella-online'. The fina
 One of the best ways to package `Cloud Native` applications is `Helm`. In canary deployment it makes even more sense.
 We have created a chart for each application that does not know anything about canary. Then we pack everything together in an umbrella helm chart.
 
-![Shop Umbrella Helm Chart](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/Shop-helm-canary-rollouts.png)
+![Shop Umbrella Helm Chart](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/Shop-helm-canary-rollouts.png)
 
 In the `Shop Umbrella Chart` we use several times the same charts as helm dependencies but with different names.
  
@@ -67,7 +67,7 @@ We have packaged both applications in one chart, but we may have different umbre
 - [oc 4.16 CLI](https://docs.openshift.com/container-platform/4.16/cli_reference/openshift_cli/getting-started-cli.html)
 - [Argo Rollouts CLI](https://argoproj.github.io/argo-rollouts/installation/#kubectl-plugin-installation )
 
-We have a GitHub [repository](https://github.com/davidseve/cloud-native-deployment-strategies) for this demo. As part of the demo, you will have to do some changes and commits. So **it is important that you fork the repository and clone it in your local**.
+We have a GitHub [repository](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies) for this demo. As part of the demo, you will have to do some changes and commits. So **it is important that you fork the repository and clone it in your local**.
 
 ```
 git clone https://github.com/your_user/cloud-native-deployment-strategies
@@ -90,7 +90,7 @@ oc apply -f gitops/gitops-operator.yaml
  
 Once OpenShift GitOps is installed, an instance of Argo CD is automatically installed on the cluster in the `openshift-gitops` namespace and a link to this instance is added to the application launcher in OpenShift Web Console.
  
-![Application Launcher](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/gitops-link.png)
+![Application Launcher](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/gitops-link.png)
  
 ### Log into Argo CD dashboard
  
@@ -102,15 +102,15 @@ oc extract secret/openshift-gitops-cluster -n openshift-gitops --to=-
  
 Click on Argo CD from the OpenShift Web Console application launcher and then log into Argo CD with `admin` username and the password retrieved from the previous step.
  
-![Argo CD](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/ArgoCD-login.png)
+![Argo CD](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/ArgoCD-login.png)
  
-![Argo CD](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/ArgoCD-UI.png)
+![Argo CD](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/ArgoCD-UI.png)
  
 ### Configure OpenShift with Argo CD
  
 We are going to follow, as much as we can, a GitOps methodology in this demo. So we will have everything in our Git repository and use **ArgoCD** to deploy it in the cluster.
  
-In the current Git repository, the [gitops/cluster-config](https://github.com/davidseve/cloud-native-deployment-strategies/tree/main/gitops/cluster-config) directory contains OpenShift cluster configurations such as:
+In the current Git repository, the [gitops/cluster-config](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/tree/main/gitops/cluster-config) directory contains OpenShift cluster configurations such as:
 
 - namespaces `gitops`.
 - role binding for ArgoCD to the namespace `gitops`.
@@ -120,7 +120,7 @@ In the current Git repository, the [gitops/cluster-config](https://github.com/da
 - **OpenShift Elasticsearch Operator**
 - **Red Hat OpenShift distributed tracing platform**
  
-Let's configure Argo CD to recursively sync the content of the [gitops/cluster-config](https://github.com/davidseve/cloud-native-deployment-strategies/tree/main/gitops/cluster-config) directory into the OpenShift cluster.
+Let's configure Argo CD to recursively sync the content of the [gitops/cluster-config](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/tree/main/gitops/cluster-config) directory into the OpenShift cluster.
  
 Execute this command to add a new Argo CD application that syncs a Git repository containing cluster configurations with the OpenShift cluster.
  
@@ -172,7 +172,7 @@ oc apply -f canary-argo-rollouts-service-mesh/application-shop-canary-rollouts-m
 
 Looking at the Argo CD dashboard, you will notice that we have a new `shop` application.
 
-![Argo CD - Cluster Config](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/ArgoCD-Applications.png)
+![Argo CD - Cluster Config](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/ArgoCD-Applications.png)
 
 ## Test Shop application
  
@@ -228,7 +228,7 @@ NAME                                  KIND        STATUS     AGE  INFO
 We have already deployed the products version v1.0.1 with 4 replicas, and we are ready to use a new products version v1.1.1 that has a new `description` attribute.
 
 This is our current status:
-![Shop initial status](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/canary-rollout-mesh-step-0.png)
+![Shop initial status](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/canary-rollout-mesh-step-0.png)
 
 This is how we have configure **Argo Rollouts** for this demo:
 ```yaml
@@ -275,12 +275,12 @@ ArgoCD will refresh the status after some minutes. If you don't want to wait you
  
 [^note2]:
     Here you can see how to configure the Argo CD Git [Webhook]( https://argo-cd.readthedocs.io/en/stable/operator-manual/webhook/)
-    ![Argo CD Git Webhook](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/ArgoCD-webhook.png)
+    ![Argo CD Git Webhook](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/ArgoCD-webhook.png)
 
-![Refresh Shop](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/ArgoCD-Shop-Refresh.png)
+![Refresh Shop](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/ArgoCD-Shop-Refresh.png)
 
 This is our current status:
-![Shop Step 1](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/canary-rollout-mesh-step-1.png)
+![Shop Step 1](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/canary-rollout-mesh-step-1.png)
 
 ```
 kubectl argo rollouts get rollout products --watch -n gitops
@@ -337,7 +337,7 @@ Old revision:
 After 30 seconds **Argo Rollouts** automatically will increase the number of replicas in the new release to 2 and change the Virtual Service to send 50% of the traffic to the canary version. Instead of increasing automatically after 30 seconds we can configure **Argo Rollouts** to wait indefinitely until that `Pause` condition is removed. But this is not part of this demo.
 
 This is our current status:
-![Shop Step 2](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/canary-rollout-mesh-step-2.png)
+![Shop Step 2](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/canary-rollout-mesh-step-2.png)
 
 ```
 kubectl argo rollouts get rollout products --watch -n gitops
@@ -360,7 +360,7 @@ After other 30 seconds **Argo Rollouts** will increase the number of replicas in
 
 
 This is our current status:
-![Shop Step 3](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/canary-rollout-mesh-step-3.png)
+![Shop Step 3](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/canary-rollout-mesh-step-3.png)
 
 ```
 kubectl argo rollouts get rollout products --watch -n gitops

@@ -12,14 +12,14 @@ In this demo we are going to use blue-green capabilities.
  
 **In the next steps, we will see a real example of how to install, deploy and manage the life cycle of Cloud Native applications doing Blue/Green deployment using Argo Rollouts.**
  
-If you want to know more about Blue/Green deployment please read [**Blue/Green Deployment**](https://github.com/davidseve/cloud-native-deployment-strategies/tree/main/blue-green-pipeline#bluegreen-deployment)
+If you want to know more about Blue/Green deployment please read [**Blue/Green Deployment**](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/tree/main/blue-green-pipeline#bluegreen-deployment)
 
 Let's start with some theory...after that, we will have a **hands-on example**.
 ## Shop application
  
 We are going to use very simple applications to test Blue/Green deployment. We have created two Quarkus applications `Products` and `Discounts`
  
-![Shop Application](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/Shop.png)
+![Shop Application](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/Shop.png)
  
 `Products` call `Discounts` to get the product`s discount and expose an API with a list of products with its discounts.
  
@@ -27,7 +27,7 @@ We are going to use very simple applications to test Blue/Green deployment. We h
  
 To achieve Blue/Green deployment with `Cloud Native` applications using **Argo Rollouts**, we have designed this architecture.
 
-![Shop initial status](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/rollout-blue-green-step-0.png)
+![Shop initial status](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/rollout-blue-green-step-0.png)
  
 OpenShift Components - Online
 
@@ -59,7 +59,7 @@ We have defined an active or online service 'products-umbrella-online' and a pre
 One of the best ways to package `Cloud Native` applications is `Helm`. In Blue/Green deployment it makes even more sense.
 We have created a chart for each application that does not know anything about Blue/Green. Then we pack everything together in an umbrella helm chart.
 
-![Shop Umbrella Helm Chart](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/Shop-helm-rollouts.png)
+![Shop Umbrella Helm Chart](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/Shop-helm-rollouts.png)
 
 In the `Shop Umbrella Chart` we use several times the same charts as helm dependencies but with different names if they are online/offline. This will allow us to have different configurations for each color.
  
@@ -76,7 +76,7 @@ We have packaged both applications in one chart, but we may have different umbre
 - [oc 4.16 CLI] (https://docs.openshift.com/container-platform/4.16/cli_reference/openshift_cli/getting-started-cli.html)
 - [Argo Rollouts CLI](https://argoproj.github.io/argo-rollouts/installation/#kubectl-plugin-installation )
 
-We have a GitHub [repository](https://github.com/davidseve/cloud-native-deployment-strategies) for this demo. As part of the demo, you will have to do some changes and commits. So **it is important that you fork the repository and clone it in your local**.
+We have a GitHub [repository](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies) for this demo. As part of the demo, you will have to do some changes and commits. So **it is important that you fork the repository and clone it in your local**.
 
 ```
 git clone https://github.com/your_user/cloud-native-deployment-strategies
@@ -99,7 +99,7 @@ oc apply -f gitops/gitops-operator.yaml
  
 Once OpenShift GitOps is installed, an instance of Argo CD is automatically installed on the cluster in the `openshift-gitops` namespace and a link to this instance is added to the application launcher in OpenShift Web Console.
  
-![Application Launcher](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/gitops-link.png)
+![Application Launcher](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/gitops-link.png)
  
 ### Log into Argo CD dashboard
  
@@ -111,22 +111,22 @@ oc extract secret/openshift-gitops-cluster -n openshift-gitops --to=-
  
 Click on Argo CD from the OpenShift Web Console application launcher and then log into Argo CD with `admin` username and the password retrieved from the previous step.
  
-![Argo CD](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/ArgoCD-login.png)
+![Argo CD](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/ArgoCD-login.png)
  
-![Argo CD](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/ArgoCD-UI.png)
+![Argo CD](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/ArgoCD-UI.png)
  
 ### Configure OpenShift with Argo CD
  
 We are going to follow, as much as we can, a GitOps methodology in this demo. So we will have everything in our Git repository and use **ArgoCD** to deploy it in the cluster.
  
-In the current Git repository, the [gitops/cluster-config](https://github.com/davidseve/cloud-native-deployment-strategies/tree/main/gitops/cluster-config) directory contains OpenShift cluster configurations such as:
+In the current Git repository, the [gitops/cluster-config](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/tree/main/gitops/cluster-config) directory contains OpenShift cluster configurations such as:
 
 - namespaces `gitops`.
 - role binding for ArgoCD to the namespace `gitops`.
 - namespaces `argo-rollouts`.
 - Argo Rollouts `RolloutManager`.
  
-Let's configure Argo CD to recursively sync the content of the [gitops/cluster-config](https://github.com/davidseve/cloud-native-deployment-strategies/tree/main/gitops/cluster-config) directory into the OpenShift cluster.
+Let's configure Argo CD to recursively sync the content of the [gitops/cluster-config](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/tree/main/gitops/cluster-config) directory into the OpenShift cluster.
  
 Execute this command to add a new Argo CD application that syncs a Git repository containing cluster configurations with the OpenShift cluster.
  
@@ -176,7 +176,7 @@ oc apply -f blue-green-argo-rollouts/application-shop-blue-green-rollouts.yaml
 
 Looking at the Argo CD dashboard, you would notice that we have a new `shop` application.
 
-![Argo CD - Cluster Config](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/ArgoCD-Applications.png)
+![Argo CD - Cluster Config](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/ArgoCD-Applications.png)
 
 ## Test Shop application
  
@@ -240,7 +240,7 @@ We have split a `Cloud Native` Blue/Green deployment into two steps:
 We have already deployed the products version v1.0.1, and we are ready to use a new products version v1.1.1 that has a new `description` attribute.
 
 This is our current status:
-![Shop initial status](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/rollout-blue-green-step-0.png)
+![Shop initial status](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/rollout-blue-green-step-0.png)
 ### Step 1 - Deploy a new version
  
 We will deploy a new version v1.1.1. To do it, we have to edit the file `helm/quarkus-helm-umbrella/chart/values/values-rollouts-blue-green.yaml` under `products-blue` set `tag` value to `v.1.1.1`
@@ -263,10 +263,10 @@ git push origin rollouts
  
 [^note2]:
     Here you can see how to configure the Argo CD Git [Webhook]( https://argo-cd.readthedocs.io/en/stable/operator-manual/webhook/)
-    ![Argo CD Git Webhook](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/ArgoCD-webhook.png)
+    ![Argo CD Git Webhook](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/ArgoCD-webhook.png)
 
 
-![Refresh Shop](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/ArgoCD-Shop-Refresh.png)
+![Refresh Shop](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/ArgoCD-Shop-Refresh.png)
  
 **Argo Rollouts** will automatically deploy the new products version and execute the `prePromotionAnalysis`. 
 
@@ -287,7 +287,7 @@ NAME                                  KIND         STATUS        AGE  INFO
 If the `prePromotionAnalysis` goes well, we can see that offline applications have version v1.1.1 and the new attribute description, but the online version has not changed.
 
 This is our current status:
-![Shop Step 1](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/rollout-blue-green-step-1.png)
+![Shop Step 1](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/rollout-blue-green-step-1.png)
 
  
 ```json
@@ -335,7 +335,7 @@ NAME                                  KIND         STATUS        AGE  INFO
       └──□ products-67fc9fb79b-p7jk9  Pod          ✔ Running     88m  ready:1/1
 ```
 This is our current status:
-![Shop Step 2 initial](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/rollout-blue-green-step-2-initial.png)
+![Shop Step 2 initial](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/rollout-blue-green-step-2-initial.png)
 
 And after `scaleDownDelaySeconds` **Argo Rollouts** will scale down the first replicaSet (v1.0.1).
  
@@ -352,7 +352,7 @@ And after `scaleDownDelaySeconds` **Argo Rollouts** will scale down the first re
 ```
 
 This is our final status:
-![Shop Step 2](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/rollout-blue-green-step-2.png)
+![Shop Step 2](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/rollout-blue-green-step-2.png)
 
 **We have in the online environment the new version v1.1.1!!!**
 ```json
@@ -385,14 +385,14 @@ git push origin rollouts
 ```
 **ArgoCD** will get the changes and apply them. **Argo Rollouts** will create a new revision with the previous version.
 
-![Shop Step Rollback initial](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/rollout-blue-green-step-rollback-initial.png)
+![Shop Step Rollback initial](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/rollout-blue-green-step-rollback-initial.png)
 
 Execute this command to promote products to version `v1.0.1`:
 ```
 kubectl argo rollouts promote products -n gitops
 ```
 The rollback is done!
-![Shop Step Rollback](https://github.com/davidseve/cloud-native-deployment-strategies/raw/main/images/rollout-blue-green-step-rollback.png)
+![Shop Step Rollback](https://github.com/maximilianoPizarro/cloud-native-deployment-strategies/raw/main/images/rollout-blue-green-step-rollback.png)
 ```json
 {
    "products":[
