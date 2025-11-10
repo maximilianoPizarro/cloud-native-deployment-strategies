@@ -16,5 +16,5 @@ spec:
     options:
       collector.otlp:
         enabled: true
-      reporter.grpc.tls.enabled: "false"
+    image: "jaegertracing/all-in-one:1.41.0"
 {{ end }}
