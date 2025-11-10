@@ -9,8 +9,7 @@ metadata:
 spec:
   channel: stable
   installPlanApproval: Automatic
-  name: jaeger-product
+  name: jaeger
   source: community-operators
   sourceNamespace: openshift-marketplace
-  startingCSV: jaeger-operator.v1.65.0
 {{ end }}

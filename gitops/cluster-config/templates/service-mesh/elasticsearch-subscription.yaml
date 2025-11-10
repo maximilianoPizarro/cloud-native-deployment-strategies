@@ -8,9 +8,8 @@ metadata:
   namespace: openshift-operators
 spec:
   channel: stable
-  name: elasticsearch-operator
-  source: certified-operators
-  startingCSV: elasticsearch-eck-operator-certified.v3.2.0
-  sourceNamespace: openshift-marketplace
   installPlanApproval: Automatic
+  name: elasticsearch-eck-operator-certified
+  source: certified-operators
+  sourceNamespace: openshift-marketplace
 {{ end }}
