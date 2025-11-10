@@ -11,5 +11,5 @@ spec:
   installPlanApproval: Automatic
   name: jaeger-product
   source: community-operators
-  startingCSV: jaeger-product.v1.65.0
+  startingCSV: jaeger-operator.v1.65.0
 {{ end }}
