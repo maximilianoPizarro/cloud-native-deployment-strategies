@@ -16,4 +16,5 @@ spec:
     options:
       collector.otlp:
         enabled: true
+    reporter.grpc.tls.ca: ""
 {{ end }}
