@@ -1,0 +1,49 @@
+{{- if .Values.istio.enabled }}
+apiVersion: opentelemetry.io/v1alpha1
+kind: OpenTelemetryCollector
+metadata:
+  name: opentelemetry-collector 
+  namespace: openshift-distributed-tracing
+  annotations:
+    argocd.argoproj.io/sync-wave: "11" 
+spec:
+  mode: deployment
+  config:
+    receivers:
+      otlp:
+        protocols:
+          grpc: 
+            endpoint: "0.0.0.0:4317"
+          http: 
+            endpoint: "0.0.0.0:4318"
+
+    exporters:
+      jaeger:
+        endpoint: "jaeger-all-in-one-inmemory-collector.openshift-distributed-tracing.svc:14250"
+        tls:
+          insecure: true
+
+      logging:
+        loglevel: info
+
+    service:
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: []
+          exporters: [jaeger, logging]
+
+  jaeger:
+    spec:
+      strategy: allInOne
+      allInOne:
+        image: "quay.io/jaegertracing/all-in-one:latest"
+        options:
+          query:
+            base-path: /
+      storage:
+        type: memory
+        options:
+          memory:
+            max-traces: 100000
+{{ end }}
