@@ -2,19 +2,20 @@
 apiVersion: opentelemetry.io/v1alpha1
 kind: OpenTelemetryCollector
 metadata:
-  name: opentelemetry-collector 
+  name: opentelemetry-collector
   namespace: openshift-distributed-tracing
   annotations:
-    argocd.argoproj.io/sync-wave: "11" 
+    argocd.argoproj.io/sync-wave: "11"
 spec:
   mode: deployment
-  config:
+  config: |  
+    # Todo el bloque siguiente ahora es tratado como un string
     receivers:
       otlp:
         protocols:
-          grpc: 
+          grpc:
             endpoint: "0.0.0.0:4317"
-          http: 
+          http:
             endpoint: "0.0.0.0:4318"
 
     exporters:
@@ -32,6 +33,7 @@ spec:
           receivers: [otlp]
           processors: []
           exporters: [jaeger, logging]
+
 
   jaeger:
     spec:
