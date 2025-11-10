@@ -10,7 +10,7 @@ productsNetworkingOnline:
   router:
     enabled: false
 
-domain: maximilianoPizarro
+domain: cluster-79f4d.dynamic.redhatworkshops.io
 
 global:
   istio:
