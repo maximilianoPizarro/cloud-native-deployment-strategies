@@ -11,5 +11,6 @@ spec:
   name: elasticsearch-operator
   source: certified-operators
   startingCSV: elasticsearch-eck-operator-certified.v3.2.0
+  sourceNamespace: openshift-marketplace
   installPlanApproval: Automatic
 {{ end }}

@@ -11,5 +11,6 @@ spec:
   installPlanApproval: Automatic
   name: jaeger-product
   source: community-operators
+  sourceNamespace: openshift-marketplace
   startingCSV: jaeger-operator.v1.65.0
 {{ end }}
