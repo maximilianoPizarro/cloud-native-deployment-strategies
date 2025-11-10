@@ -61,7 +61,7 @@ then
     waitoperatorpod pipelines
 fi
 
-sed -i 's/change_me/davidseve/g' canary-argo-rollouts/application-shop-canary-rollouts.yaml
+sed -i 's/maximilianoPizarro/davidseve/g' canary-argo-rollouts/application-shop-canary-rollouts.yaml
 
 oc apply -f canary-argo-rollouts/application-shop-canary-rollouts.yaml --wait=true
 sleep 2m

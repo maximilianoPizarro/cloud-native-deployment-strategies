@@ -63,7 +63,7 @@ then
 
 fi
 
-sed -i 's/change_me/davidseve/g' blue-green-pipeline/application-shop-blue-green.yaml
+sed -i 's/maximilianoPizarro/davidseve/g' blue-green-pipeline/application-shop-blue-green.yaml
 
 oc apply -f blue-green-pipeline/application-shop-blue-green.yaml --wait=true
 sleep 1m

@@ -71,7 +71,7 @@ then
     fi
 fi
 
-sed -i 's/change_me/davidseve/g' blue-green-argo-rollouts/application-shop-blue-green-rollouts.yaml
+sed -i 's/maximilianoPizarro/davidseve/g' blue-green-argo-rollouts/application-shop-blue-green-rollouts.yaml
 
 oc apply -f blue-green-argo-rollouts/application-shop-blue-green-rollouts.yaml --wait=true
 sleep 2m

@@ -65,7 +65,7 @@ then
 fi
 
 
-sed -i 's/change_me/davidseve/g' canary-service-mesh/application-shop-mesh.yaml
+sed -i 's/maximilianoPizarro/davidseve/g' canary-service-mesh/application-shop-mesh.yaml
 sed -i "s/change_domain/$4/g" canary-service-mesh/application-shop-mesh.yaml
 
 oc apply -f canary-service-mesh/application-shop-mesh.yaml --wait=true

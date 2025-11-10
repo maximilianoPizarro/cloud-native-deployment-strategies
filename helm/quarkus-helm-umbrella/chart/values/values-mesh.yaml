@@ -10,7 +10,7 @@ productsNetworkingOnline:
   router:
     enabled: false
 
-domain: change_me
+domain: maximilianoPizarro
 
 global:
   istio:

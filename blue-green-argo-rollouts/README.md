@@ -155,7 +155,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: helm/quarkus-helm-umbrella/chart
-    repoURL:  https://github.com/change_me/cloud-native-deployment-strategies.git
+    repoURL:  https://github.com/maximilianoPizarro/cloud-native-deployment-strategies.git
     targetRevision: rollouts
     helm:
       parameters:

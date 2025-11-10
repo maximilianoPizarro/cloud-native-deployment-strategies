@@ -64,7 +64,7 @@ then
     waitoperatorpod istio
 fi
 
-sed -i 's/change_me/davidseve/g' canary-argo-rollouts-service-mesh/application-shop-canary-rollouts-mesh.yaml
+sed -i 's/maximilianoPizarro/davidseve/g' canary-argo-rollouts-service-mesh/application-shop-canary-rollouts-mesh.yaml
 sed -i "s/change_domain/$4/g" canary-argo-rollouts-service-mesh/application-shop-canary-rollouts-mesh.yaml
 
 oc apply -f canary-argo-rollouts-service-mesh/application-shop-canary-rollouts-mesh.yaml --wait=true
